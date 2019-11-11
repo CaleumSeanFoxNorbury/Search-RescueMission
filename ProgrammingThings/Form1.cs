@@ -84,7 +84,7 @@ namespace ProgrammingThings
         private void btnBackwards_Click(object sender, EventArgs e)
         {
             serialPort1.Open();
-            serialPort1.WriteLine("3");
+            serialPort1.WriteLine("b"); //not working 
             serialPort1.Close();
         }
 
@@ -98,7 +98,7 @@ namespace ProgrammingThings
         private void btnStop_Click(object sender, EventArgs e)
         {
             serialPort1.Open();
-            serialPort1.WriteLine("2");
+            serialPort1.WriteLine("s"); //not working
             serialPort1.Close();
         }
     }
