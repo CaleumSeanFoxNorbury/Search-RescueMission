@@ -81,17 +81,18 @@ namespace ProgrammingThings
             }
         }
 
+        //--RC CONTROLS----------------------------------------------------
         private void btnBackwards_Click(object sender, EventArgs e)
         {
             serialPort1.Open();
-            serialPort1.WriteLine("b"); //not working 
+            serialPort1.WriteLine("b"); //
             serialPort1.Close();
         }
 
         private void btnGo_Click(object sender, EventArgs e)
         {
             serialPort1.Open();
-            serialPort1.WriteLine("1");
+            serialPort1.WriteLine("g");
             serialPort1.Close();
         }
 
@@ -101,5 +102,22 @@ namespace ProgrammingThings
             serialPort1.WriteLine("s"); //not working
             serialPort1.Close();
         }
+
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+            //left
+            serialPort1.Open();
+            serialPort1.WriteLine("l"); //not working 
+            serialPort1.Close();
+        }
+
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            //right
+            serialPort1.Open();
+            serialPort1.WriteLine("r"); //not working 
+            serialPort1.Close();
+        }
+        //-----------------------------------------------------------------
     }
 }

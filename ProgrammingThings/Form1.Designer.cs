@@ -107,6 +107,7 @@
             this.btnRight.TabIndex = 6;
             this.btnRight.Text = ">";
             this.btnRight.UseVisualStyleBackColor = true;
+            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // btnLeft
             // 
@@ -117,6 +118,7 @@
             this.btnLeft.Text = "<";
             this.btnLeft.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLeft.UseVisualStyleBackColor = true;
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // Form1
             // 
