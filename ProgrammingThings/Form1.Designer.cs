@@ -38,6 +38,10 @@
             this.btnBackwards = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
             this.btnLeft = new System.Windows.Forms.Button();
+            this.txtDegreesEntered = new System.Windows.Forms.TextBox();
+            this.TurnDegrees = new System.Windows.Forms.Label();
+            this.btnDegrees = new System.Windows.Forms.Button();
+            this.serialPort2 = new System.IO.Ports.SerialPort(this.components);
             this.SuspendLayout();
             // 
             // btnOff
@@ -120,11 +124,41 @@
             this.btnLeft.UseVisualStyleBackColor = true;
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
+            // txtDegreesEntered
+            // 
+            this.txtDegreesEntered.Location = new System.Drawing.Point(982, 4);
+            this.txtDegreesEntered.Name = "txtDegreesEntered";
+            this.txtDegreesEntered.Size = new System.Drawing.Size(100, 22);
+            this.txtDegreesEntered.TabIndex = 8;
+            this.txtDegreesEntered.TextChanged += new System.EventHandler(this.txtDegreesEntered_TextChanged);
+            // 
+            // TurnDegrees
+            // 
+            this.TurnDegrees.AutoSize = true;
+            this.TurnDegrees.Location = new System.Drawing.Point(844, 6);
+            this.TurnDegrees.Name = "TurnDegrees";
+            this.TurnDegrees.Size = new System.Drawing.Size(132, 17);
+            this.TurnDegrees.TabIndex = 9;
+            this.TurnDegrees.Text = "Enter Turn degrees";
+            // 
+            // btnDegrees
+            // 
+            this.btnDegrees.Location = new System.Drawing.Point(1088, 3);
+            this.btnDegrees.Name = "btnDegrees";
+            this.btnDegrees.Size = new System.Drawing.Size(108, 23);
+            this.btnDegrees.TabIndex = 10;
+            this.btnDegrees.Text = "EnterDegrees";
+            this.btnDegrees.UseVisualStyleBackColor = true;
+            this.btnDegrees.Click += new System.EventHandler(this.btnDegrees_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1208, 478);
+            this.Controls.Add(this.btnDegrees);
+            this.Controls.Add(this.TurnDegrees);
+            this.Controls.Add(this.txtDegreesEntered);
             this.Controls.Add(this.btnLeft);
             this.Controls.Add(this.btnRight);
             this.Controls.Add(this.btnBackwards);
@@ -137,6 +171,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -151,6 +186,10 @@
         private System.Windows.Forms.Button btnBackwards;
         private System.Windows.Forms.Button btnRight;
         private System.Windows.Forms.Button btnLeft;
+        private System.Windows.Forms.TextBox txtDegreesEntered;
+        private System.Windows.Forms.Label TurnDegrees;
+        private System.Windows.Forms.Button btnDegrees;
+        private System.IO.Ports.SerialPort serialPort2;
     }
 }
 

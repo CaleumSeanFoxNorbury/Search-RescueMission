@@ -118,6 +118,21 @@ namespace ProgrammingThings
             serialPort1.WriteLine("r"); //not working 
             serialPort1.Close();
         }
+
+        //TURN DEGREES ---------------------------------------------------
+        string degreesEntered;
+        private void txtDegreesEntered_TextChanged(object sender, EventArgs e)
+        {
+            degreesEntered = txtDegreesEntered.Text;
+        }
+
+        private void btnDegrees_Click(object sender, EventArgs e)
+        {
+            serialPort1.Open();
+            serialPort1.WriteLine("DegreeParameter");
+            //serialPort1.WriteLine(degreesEntered);
+            serialPort1.Close();
+        }
         //-----------------------------------------------------------------
     }
 }
