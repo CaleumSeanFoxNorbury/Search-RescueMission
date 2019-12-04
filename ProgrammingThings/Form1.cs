@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO.Ports;
 
 
 namespace ProgrammingThings
@@ -85,14 +86,14 @@ namespace ProgrammingThings
         private void btnBackwards_Click(object sender, EventArgs e)
         {
             serialPort1.Open();
-            serialPort1.WriteLine("b"); //
+            serialPort1.WriteLine("b"); //backwards
             serialPort1.Close();
         }
 
         private void btnGo_Click(object sender, EventArgs e)
         {
             serialPort1.Open();
-            serialPort1.WriteLine("g");
+            serialPort1.WriteLine("g"); //go
             serialPort1.Close();
         }
 
@@ -129,10 +130,40 @@ namespace ProgrammingThings
         private void btnDegrees_Click(object sender, EventArgs e)
         {
             serialPort1.Open();
-            serialPort1.WriteLine("DegreeParameter");
-            //serialPort1.WriteLine(degreesEntered);
+            serialPort1.WriteLine("m");
+            serialPort1.WriteLine(degreesEntered);
             serialPort1.Close();
         }
         //-----------------------------------------------------------------
+
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            serialPort1.Open();
+            string gyroReading = serialPort1.ReadLine();
+            Console.WriteLine(gyroReading);
+            serialPort1.Close();
+        }
+
+        private void bbtnTurn_Click(object sender, EventArgs e)
+        {
+            serialPort1.Open();
+            serialPort1.WriteLine("8");
+            serialPort1.Close();
+        }
+
+        private void btnL_Click(object sender, EventArgs e)
+        {
+            serialPort1.Open();
+            serialPort1.WriteLine("l");
+            serialPort1.Close();
+        }
+
+        private void btnR_Click(object sender, EventArgs e)
+        {
+            serialPort1.Open();
+            serialPort1.WriteLine("r");
+            serialPort1.Close();
+        }
     }
 }
