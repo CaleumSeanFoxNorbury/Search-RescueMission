@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO.Ports;
 
 
 namespace ProgrammingThings
@@ -81,24 +82,87 @@ namespace ProgrammingThings
             }
         }
 
+        //--RC CONTROLS----------------------------------------------------
         private void btnBackwards_Click(object sender, EventArgs e)
         {
             serialPort1.Open();
-            serialPort1.WriteLine("3");
+            serialPort1.WriteLine("b"); //backwards
             serialPort1.Close();
         }
 
         private void btnGo_Click(object sender, EventArgs e)
         {
             serialPort1.Open();
-            serialPort1.WriteLine("1");
+            serialPort1.WriteLine("g"); //go
             serialPort1.Close();
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
             serialPort1.Open();
-            serialPort1.WriteLine("2");
+            serialPort1.WriteLine("s"); //not working
+            serialPort1.Close();
+        }
+
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+            //left
+            serialPort1.Open();
+            serialPort1.WriteLine("l"); //not working 
+            serialPort1.Close();
+        }
+
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            //right
+            serialPort1.Open();
+            serialPort1.WriteLine("r"); //not working 
+            serialPort1.Close();
+        }
+
+        //TURN DEGREES ---------------------------------------------------
+        string degreesEntered;
+        private void txtDegreesEntered_TextChanged(object sender, EventArgs e)
+        {
+            degreesEntered = txtDegreesEntered.Text;
+        }
+
+        private void btnDegrees_Click(object sender, EventArgs e)
+        {
+            serialPort1.Open();
+            serialPort1.WriteLine("m");
+            serialPort1.WriteLine(degreesEntered);
+            serialPort1.Close();
+        }
+        //-----------------------------------------------------------------
+
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            serialPort1.Open();
+            string gyroReading = serialPort1.ReadLine();
+            Console.WriteLine(gyroReading);
+            serialPort1.Close();
+        }
+
+        private void bbtnTurn_Click(object sender, EventArgs e)
+        {
+            serialPort1.Open();
+            serialPort1.WriteLine("8");
+            serialPort1.Close();
+        }
+
+        private void btnL_Click(object sender, EventArgs e)
+        {
+            serialPort1.Open();
+            serialPort1.WriteLine("l");
+            serialPort1.Close();
+        }
+
+        private void btnR_Click(object sender, EventArgs e)
+        {
+            serialPort1.Open();
+            serialPort1.WriteLine("r");
             serialPort1.Close();
         }
     }
