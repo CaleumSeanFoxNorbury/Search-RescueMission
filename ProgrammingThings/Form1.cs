@@ -11,7 +11,7 @@ using System.IO.Ports;
 
 
 namespace ProgrammingThings
-{
+{   
     public partial class Form1 : Form
     {
         public Form1()
@@ -130,7 +130,6 @@ namespace ProgrammingThings
         private void btnDegrees_Click(object sender, EventArgs e)
         {
             serialPort1.Open();
-            serialPort1.WriteLine("m");
             serialPort1.WriteLine(degreesEntered);
             serialPort1.Close();
         }
@@ -140,8 +139,10 @@ namespace ProgrammingThings
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             serialPort1.Open();
-            string gyroReading = serialPort1.ReadLine();
-            Console.WriteLine(gyroReading);
+            string GyroReading = serialPort1.ReadLine();
+
+         
+            
             serialPort1.Close();
         }
 
@@ -164,6 +165,21 @@ namespace ProgrammingThings
             serialPort1.Open();
             serialPort1.WriteLine("r");
             serialPort1.Close();
+        }
+
+        private void lblLeftSensor_Click(object sender, EventArgs e)
+        {
+            //https://www.youtube.com/watch?v=wej52Ca9HnY&t=440s link for recieving data 
+        }
+
+        private void richTextBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

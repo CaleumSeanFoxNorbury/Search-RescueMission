@@ -2,7 +2,6 @@
 
 #include "TurnSensor.h"
 
-
 uint32_t turnAngle = 0;
 int16_t turnRate;
 int16_t gyroOffset;
