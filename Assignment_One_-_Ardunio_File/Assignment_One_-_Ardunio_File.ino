@@ -2,37 +2,50 @@
 #include<Wire.h>
 
 #include"TurnSensor.h"
+#include"ProxSensor.h"
 
 //setting instances 
+Zumo32U4ProximitySensors proxSensors; //proximity sensor 
 Zumo32U4Motors motors;
-L3G gyro; //gyro scope 
-
+L3G gyro; //gyro scope
+ 
 void setup() {
-  // put your setup code here, to run once:
+  //port initaliser 
   Serial1.begin(9600);
   Serial.begin(9600);
-  
-  turnSensorSetup();
+  //turn sensor setup
+ // turnSensorSetup();
   delay(500);
-  turnSensorReset(); 
+ // turnSensorReset(); 
+  //prox sensor setup
+  proxSensors.initThreeSensors(); //initalise the three sensors(left, right, front-leftm front-right)
 }
 
 void loop() {
   //declaring variables
   int incomingByte = 0; 
   
-//  constant display angle of the robot
-//  turnSensorUpdate();
-//  int32_t angle = getAngle();   
-//  Serial1.print("angle of sensor: ");
-//  Serial1.println(angle);
-//  Serial1.println(" ");
+  //constant display angle of the robot
+  //turn sensor display - needs to be on GUI
+   //turnSensorUpdate();
+  int32_t angle = getAngle();
 
+  //Serial1.print("angle of sensor: ");
+  //Serial1.println(angle);
+  //erial1.println("1");
+  //PROX SENSOR READINGS 
+  PrxSensorRead();
+  ReadInProxSensors(); 
+  //DisplayReading();
   //event actions
   if (Serial1.available() > 0) {
     incomingByte = Serial1.read();
-    displayIncomingByteWorth(incomingByte); //say what i got
-
+    //displayIncomingByteWorth(incomingByte); //say what i got
+   
+   //test function
+   if(incomingByte == 116){ //key: t
+     Serial1.print("Caleum");
+   }
    if(incomingByte == 103){ //key: g
       Go();
     }
@@ -91,7 +104,7 @@ void UTurn(){
     motors.setSpeeds(100, -100);
     turnSensorUpdate();
     angle = (((int32_t)turnAngle >> 16) * 360) >> 16;
-  }while(angle != -180);
+  }while(angle != -179);
   Stop();
 }
 //------------------------------------------------------
@@ -113,7 +126,7 @@ int32_t getAngle(){
      /*
 
   
-  proxSensors.initThreeSensors(); //initalise the three sensors(left, right, front-leftm front-right)
+  
   lineSensor.initThreeSensors(); //initalising the three sensors for the line movement
   lineSensor.emittersOn(); //for line sensor
   
@@ -179,5 +192,15 @@ void TurnToDegrees(int degrees){
     angle = (((int32_t)turnAngle >> 16) * 360) >> 16;
   }while(angle < degrees);
   Stop();
+}
+
+
+
+//////////////////////
+
+bool Zumo32U4ProximitySensors::readBasic(uint8_t sensorNumber)
+{
+    if (sensorNumber >= numSensors) { return 0; }
+    return !digitalReadSafe(dataArray[sensorNumber].pin, 1);
 }
 */

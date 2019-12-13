@@ -11,7 +11,7 @@ using System.IO.Ports;
 
 
 namespace ProgrammingThings
-{
+{   
     public partial class Form1 : Form
     {
         public Form1()
@@ -130,7 +130,6 @@ namespace ProgrammingThings
         private void btnDegrees_Click(object sender, EventArgs e)
         {
             serialPort1.Open();
-            serialPort1.WriteLine("m");
             serialPort1.WriteLine(degreesEntered);
             serialPort1.Close();
         }
@@ -139,10 +138,7 @@ namespace ProgrammingThings
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            serialPort1.Open();
-            string gyroReading = serialPort1.ReadLine();
-            Console.WriteLine(gyroReading);
-            serialPort1.Close();
+            
         }
 
         private void bbtnTurn_Click(object sender, EventArgs e)
@@ -163,6 +159,49 @@ namespace ProgrammingThings
         {
             serialPort1.Open();
             serialPort1.WriteLine("r");
+            serialPort1.Close();
+        }
+
+        private void lblLeftSensor_Click(object sender, EventArgs e)
+        {
+            //https://www.youtube.com/watch?v=wej52Ca9HnY&t=440s link for recieving data 
+        }
+
+        private void richTextBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void IncomingDataBox_TextChanged(object sender, EventArgs e)
+        {
+            serialPort1.Open();
+            //IncomingDataBox.enabled = true;
+            //incomingDataBox.Enabled = true;
+            //int x = Convert.ToInt32(incomingData);
+            incomingDataBox.Text = "Ready";
+
+            Console.WriteLine("Ready");
+            string incomingData = serialPort1.ReadExisting();
+            incomingDataBox.Text =  incomingData;
+            
+
+            serialPort1.Close();
+        }
+
+        private void groupBox1_Enter_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            serialPort1.Open();
+            serialPort1.WriteLine("t"); //go
             serialPort1.Close();
         }
     }
