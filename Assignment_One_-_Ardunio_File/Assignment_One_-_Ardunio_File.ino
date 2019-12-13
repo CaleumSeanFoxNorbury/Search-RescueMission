@@ -10,13 +10,13 @@ Zumo32U4Motors motors;
 L3G gyro; //gyro scope
  
 void setup() {
-  // port initaliser 
+  //port initaliser 
   Serial1.begin(9600);
   Serial.begin(9600);
   //turn sensor setup
-  turnSensorSetup();
+ // turnSensorSetup();
   delay(500);
-  turnSensorReset(); 
+ // turnSensorReset(); 
   //prox sensor setup
   proxSensors.initThreeSensors(); //initalise the three sensors(left, right, front-leftm front-right)
 }
@@ -27,20 +27,25 @@ void loop() {
   
   //constant display angle of the robot
   //turn sensor display - needs to be on GUI
-//  turnSensorUpdate();
-//  int32_t angle = getAngle();   
-//  Serial1.print("angle of sensor: ");
-//  Serial1.write(angle);
-//  Serial1.println(" ");
+   //turnSensorUpdate();
+  int32_t angle = getAngle();
+
+  //Serial1.print("angle of sensor: ");
+  //Serial1.println(angle);
+  //erial1.println("1");
   //PROX SENSOR READINGS 
   PrxSensorRead();
   ReadInProxSensors(); 
-  DisplayReading();
+  //DisplayReading();
   //event actions
   if (Serial1.available() > 0) {
     incomingByte = Serial1.read();
     //displayIncomingByteWorth(incomingByte); //say what i got
-
+   
+   //test function
+   if(incomingByte == 116){ //key: t
+     Serial1.print("Caleum");
+   }
    if(incomingByte == 103){ //key: g
       Go();
     }

@@ -58,7 +58,11 @@
             this.richTextBox4 = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ReadingsSector = new System.Windows.Forms.GroupBox();
+            this.incomingDataBox = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ReadingsSector.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOff
@@ -306,6 +310,7 @@
             // 
             // ReadingsSector
             // 
+            this.ReadingsSector.Controls.Add(this.incomingDataBox);
             this.ReadingsSector.Controls.Add(this.lblgyroReadin);
             this.ReadingsSector.Controls.Add(this.richTextBox1);
             this.ReadingsSector.Controls.Add(this.richTextBox4);
@@ -325,11 +330,42 @@
             this.ReadingsSector.Text = "ReadingsSector";
             this.ReadingsSector.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // incomingDataBox
+            // 
+            this.incomingDataBox.Location = new System.Drawing.Point(6, 274);
+            this.incomingDataBox.Name = "incomingDataBox";
+            this.incomingDataBox.Size = new System.Drawing.Size(244, 180);
+            this.incomingDataBox.TabIndex = 29;
+            this.incomingDataBox.Text = "";
+            this.incomingDataBox.TextChanged += new System.EventHandler(this.IncomingDataBox_TextChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 21);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(151, 41);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "Test Controller";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Location = new System.Drawing.Point(12, 339);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(166, 133);
+            this.groupBox1.TabIndex = 33;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Test";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1208, 478);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ReadingsSector);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnL);
@@ -347,10 +383,11 @@
             this.Controls.Add(this.labelDisplay);
             this.Controls.Add(this.btnOff);
             this.Name = "Form1";
-            this.Text = "g";
+            this.Text = "Zumo Controller";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ReadingsSector.ResumeLayout(false);
             this.ReadingsSector.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -387,6 +424,9 @@
         private System.Windows.Forms.RichTextBox richTextBox4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox ReadingsSector;
+        private System.Windows.Forms.RichTextBox incomingDataBox;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
