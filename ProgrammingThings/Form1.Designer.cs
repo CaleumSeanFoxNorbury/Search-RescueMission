@@ -41,28 +41,17 @@
             this.txtDegreesEntered = new System.Windows.Forms.TextBox();
             this.TurnDegrees = new System.Windows.Forms.Label();
             this.btnDegrees = new System.Windows.Forms.Button();
-            this.serialPort2 = new System.IO.Ports.SerialPort(this.components);
-            this.lblgyroReadin = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.bbtnTurn = new System.Windows.Forms.Button();
             this.btnR = new System.Windows.Forms.Button();
             this.btnL = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblLeftSensor = new System.Windows.Forms.Label();
-            this.lblRightSensor = new System.Windows.Forms.Label();
-            this.lblFLSensor = new System.Windows.Forms.Label();
-            this.txtBoxLSensor = new System.Windows.Forms.RichTextBox();
-            this.lblFRSensor = new System.Windows.Forms.Label();
-            this.txtBoxRightSensor = new System.Windows.Forms.RichTextBox();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox4 = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.ReadingsSector = new System.Windows.Forms.GroupBox();
-            this.incomingDataBox = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ReadingsSector.SuspendLayout();
+            this.incomingDataBox = new System.Windows.Forms.RichTextBox();
+            this.ReadingsSector = new System.Windows.Forms.GroupBox();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.ReadingsSector.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOff
@@ -172,24 +161,6 @@
             this.btnDegrees.UseVisualStyleBackColor = true;
             this.btnDegrees.Click += new System.EventHandler(this.btnDegrees_Click);
             // 
-            // lblgyroReadin
-            // 
-            this.lblgyroReadin.AutoSize = true;
-            this.lblgyroReadin.Location = new System.Drawing.Point(18, 30);
-            this.lblgyroReadin.Name = "lblgyroReadin";
-            this.lblgyroReadin.Size = new System.Drawing.Size(96, 17);
-            this.lblgyroReadin.TabIndex = 14;
-            this.lblgyroReadin.Text = "Gryo Readin: ";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(138, 30);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(97, 24);
-            this.richTextBox1.TabIndex = 16;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
-            // 
             // bbtnTurn
             // 
             this.bbtnTurn.Location = new System.Drawing.Point(1088, 276);
@@ -220,85 +191,6 @@
             this.btnL.UseVisualStyleBackColor = true;
             this.btnL.Click += new System.EventHandler(this.btnL_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 68);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(230, 17);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Proximity Sensor - - - - - - - - - - - - -";
-            // 
-            // lblLeftSensor
-            // 
-            this.lblLeftSensor.AutoSize = true;
-            this.lblLeftSensor.Location = new System.Drawing.Point(18, 98);
-            this.lblLeftSensor.Name = "lblLeftSensor";
-            this.lblLeftSensor.Size = new System.Drawing.Size(89, 17);
-            this.lblLeftSensor.TabIndex = 21;
-            this.lblLeftSensor.Text = "Left Sensor: ";
-            this.lblLeftSensor.Click += new System.EventHandler(this.lblLeftSensor_Click);
-            // 
-            // lblRightSensor
-            // 
-            this.lblRightSensor.AutoSize = true;
-            this.lblRightSensor.Location = new System.Drawing.Point(18, 139);
-            this.lblRightSensor.Name = "lblRightSensor";
-            this.lblRightSensor.Size = new System.Drawing.Size(98, 17);
-            this.lblRightSensor.TabIndex = 22;
-            this.lblRightSensor.Text = "Right Sensor: ";
-            // 
-            // lblFLSensor
-            // 
-            this.lblFLSensor.AutoSize = true;
-            this.lblFLSensor.Location = new System.Drawing.Point(9, 187);
-            this.lblFLSensor.Name = "lblFLSensor";
-            this.lblFLSensor.Size = new System.Drawing.Size(123, 17);
-            this.lblFLSensor.TabIndex = 23;
-            this.lblFLSensor.Text = "Front-Left Sensor:";
-            // 
-            // txtBoxLSensor
-            // 
-            this.txtBoxLSensor.Location = new System.Drawing.Point(138, 91);
-            this.txtBoxLSensor.Name = "txtBoxLSensor";
-            this.txtBoxLSensor.Size = new System.Drawing.Size(97, 24);
-            this.txtBoxLSensor.TabIndex = 24;
-            this.txtBoxLSensor.Text = "";
-            // 
-            // lblFRSensor
-            // 
-            this.lblFRSensor.AutoSize = true;
-            this.lblFRSensor.Location = new System.Drawing.Point(9, 231);
-            this.lblFRSensor.Name = "lblFRSensor";
-            this.lblFRSensor.Size = new System.Drawing.Size(132, 17);
-            this.lblFRSensor.TabIndex = 25;
-            this.lblFRSensor.Text = "Front-Right Sensor:";
-            // 
-            // txtBoxRightSensor
-            // 
-            this.txtBoxRightSensor.Location = new System.Drawing.Point(138, 139);
-            this.txtBoxRightSensor.Name = "txtBoxRightSensor";
-            this.txtBoxRightSensor.Size = new System.Drawing.Size(97, 24);
-            this.txtBoxRightSensor.TabIndex = 26;
-            this.txtBoxRightSensor.Text = "";
-            // 
-            // richTextBox3
-            // 
-            this.richTextBox3.Location = new System.Drawing.Point(138, 184);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(97, 24);
-            this.richTextBox3.TabIndex = 27;
-            this.richTextBox3.Text = "";
-            this.richTextBox3.TextChanged += new System.EventHandler(this.richTextBox3_TextChanged);
-            // 
-            // richTextBox4
-            // 
-            this.richTextBox4.Location = new System.Drawing.Point(138, 228);
-            this.richTextBox4.Name = "richTextBox4";
-            this.richTextBox4.Size = new System.Drawing.Size(97, 24);
-            this.richTextBox4.TabIndex = 28;
-            this.richTextBox4.Text = "";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -307,37 +199,6 @@
             this.label2.Size = new System.Drawing.Size(116, 17);
             this.label2.TabIndex = 30;
             this.label2.Text = "Object detected: ";
-            // 
-            // ReadingsSector
-            // 
-            this.ReadingsSector.Controls.Add(this.incomingDataBox);
-            this.ReadingsSector.Controls.Add(this.lblgyroReadin);
-            this.ReadingsSector.Controls.Add(this.richTextBox1);
-            this.ReadingsSector.Controls.Add(this.richTextBox4);
-            this.ReadingsSector.Controls.Add(this.label1);
-            this.ReadingsSector.Controls.Add(this.richTextBox3);
-            this.ReadingsSector.Controls.Add(this.lblLeftSensor);
-            this.ReadingsSector.Controls.Add(this.txtBoxRightSensor);
-            this.ReadingsSector.Controls.Add(this.lblRightSensor);
-            this.ReadingsSector.Controls.Add(this.lblFRSensor);
-            this.ReadingsSector.Controls.Add(this.lblFLSensor);
-            this.ReadingsSector.Controls.Add(this.txtBoxLSensor);
-            this.ReadingsSector.Location = new System.Drawing.Point(184, 12);
-            this.ReadingsSector.Name = "ReadingsSector";
-            this.ReadingsSector.Size = new System.Drawing.Size(256, 460);
-            this.ReadingsSector.TabIndex = 31;
-            this.ReadingsSector.TabStop = false;
-            this.ReadingsSector.Text = "ReadingsSector";
-            this.ReadingsSector.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // incomingDataBox
-            // 
-            this.incomingDataBox.Location = new System.Drawing.Point(6, 274);
-            this.incomingDataBox.Name = "incomingDataBox";
-            this.incomingDataBox.Size = new System.Drawing.Size(244, 180);
-            this.incomingDataBox.TabIndex = 29;
-            this.incomingDataBox.Text = "";
-            this.incomingDataBox.TextChanged += new System.EventHandler(this.IncomingDataBox_TextChanged);
             // 
             // button1
             // 
@@ -359,6 +220,36 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Test";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter_1);
+            // 
+            // incomingDataBox
+            // 
+            this.incomingDataBox.Location = new System.Drawing.Point(6, 30);
+            this.incomingDataBox.Name = "incomingDataBox";
+            this.incomingDataBox.Size = new System.Drawing.Size(244, 378);
+            this.incomingDataBox.TabIndex = 29;
+            this.incomingDataBox.Text = "";
+            this.incomingDataBox.TextChanged += new System.EventHandler(this.IncomingDataBox_TextChanged);
+            // 
+            // ReadingsSector
+            // 
+            this.ReadingsSector.Controls.Add(this.btnUpdate);
+            this.ReadingsSector.Controls.Add(this.incomingDataBox);
+            this.ReadingsSector.Location = new System.Drawing.Point(184, 12);
+            this.ReadingsSector.Name = "ReadingsSector";
+            this.ReadingsSector.Size = new System.Drawing.Size(256, 460);
+            this.ReadingsSector.TabIndex = 31;
+            this.ReadingsSector.TabStop = false;
+            this.ReadingsSector.Text = "ReadingsSector";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(6, 414);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(244, 40);
+            this.btnUpdate.TabIndex = 30;
+            this.btnUpdate.Text = "Update Readings";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // Form1
             // 
@@ -385,9 +276,8 @@
             this.Name = "Form1";
             this.Text = "Zumo Controller";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.ReadingsSector.ResumeLayout(false);
-            this.ReadingsSector.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.ReadingsSector.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -407,26 +297,15 @@
         private System.Windows.Forms.TextBox txtDegreesEntered;
         private System.Windows.Forms.Label TurnDegrees;
         private System.Windows.Forms.Button btnDegrees;
-        private System.IO.Ports.SerialPort serialPort2;
-        private System.Windows.Forms.Label lblgyroReadin;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button bbtnTurn;
         private System.Windows.Forms.Button btnR;
         private System.Windows.Forms.Button btnL;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblLeftSensor;
-        private System.Windows.Forms.Label lblRightSensor;
-        private System.Windows.Forms.Label lblFLSensor;
-        private System.Windows.Forms.RichTextBox txtBoxLSensor;
-        private System.Windows.Forms.Label lblFRSensor;
-        private System.Windows.Forms.RichTextBox txtBoxRightSensor;
-        private System.Windows.Forms.RichTextBox richTextBox3;
-        private System.Windows.Forms.RichTextBox richTextBox4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox ReadingsSector;
-        private System.Windows.Forms.RichTextBox incomingDataBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RichTextBox incomingDataBox;
+        private System.Windows.Forms.GroupBox ReadingsSector;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }
 
