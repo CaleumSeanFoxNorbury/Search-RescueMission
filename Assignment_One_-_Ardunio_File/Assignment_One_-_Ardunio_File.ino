@@ -1,15 +1,22 @@
 #include<Zumo32U4.h>
+
 #include<Wire.h>
 
 #include"TurnSensor.h"
 #include"ProxSensor.h"
+#include"LineSensor.h"
 
 //setting instances 
 Zumo32U4ProximitySensors proxSensors; //proximity sensor 
 Zumo32U4Motors motors;
 Zumo32U4LineSensors lineSensors;
 L3G gyro; //gyro scope
- 
+
+int QTR_THRESHOLD = 1000;  // microseconds| for line sensor
+int NUM_SENSORS = 3;
+
+unsigned int lineSensorValues[3];
+
 void setup() {
   //port initaliser 
   Serial1.begin(9600);
@@ -17,26 +24,49 @@ void setup() {
   //turn sensor setup
   turnSensorSetup();
   delay(500);
-  turnSensorReset(); 
+  turnSensorReset();
+  //MOVE ALL INITALIZERS INTO THE HEADERS--------- 
   //prox sensor setup
   proxSensors.initThreeSensors(); //initalise the three sensors(left, right, front-leftm front-right)
+  lineSensors.initThreeSensors();
+  //----------------------------------------------
 }
 
 void loop() {
   //declaring variables
   int incomingByte = 0; 
-  
+  checkForBorder();
   //constant display angle of the robot
   //turn sensor display - needs to be on GUI
   //turnSensorUpdate();
   int32_t angle = getAngle();
 
-  Serial1.print("angle of sensor: ");
-  Serial1.println(angle);
- 
+//  Serial1.print("angle of sensor: ");
+//  Serial1.println(angle);
+
+//  lineSensors.read(lineSensorValues);
+
+  //place line sensor actions here
+  //..
+  //..
+  
+  delay(1000);
+  //First value
+  Serial1.print("Line Sensor One Value: ");
+  Serial1.println(lineSensorValues[0] / 10);
+  Serial1.println(" ");
+  //Second value
+  Serial1.print("Line Sensor Two Value: ");
+  Serial1.println(lineSensorValues[1] / 10);
+  Serial1.println(" ");
+  //Third value
+  Serial1.print("Line Sensor Three Value: ");
+  Serial1.println(lineSensorValues[2] / 10);
+  Serial1.println(" ");
+  
   //PROX SENSOR READINGS 
-  PrxSensorRead();
-  ReadInProxSensors(); 
+//  PrxSensorRead();
+//  ReadInProxSensors(); 
   //DisplayReading();
 
   //event actions
@@ -66,6 +96,7 @@ void loop() {
    if(incomingByte == 56){ //key: 8 Functionality: 180degree turn
       UTurn();
     }
+   // if(incomingByte == ()
   }
 }
 
@@ -124,17 +155,31 @@ int32_t getAngle(){
   return (((int32_t)turnAngle >> 16)* 360) >> 16; 
 }
 
+void checkForBorder(){
+  //if left sensor spots boarder
+  if (lineSensorValues[0] < QTR_THRESHOLD){
+    //make angle of the 
+    //else if right sensor spots border
+    //Backwards();
+    motors.setSpeeds(0,0);
+//  }else if(lineSensorValues[NUM_SENSORS - 1] < QTR_THRESHOLD){
+//    //TurnLeft();
+//    delay(500);
+//    Go();
+  }
+  else{
+    Go();
+  }
+}
 
      /*
 
   
   
-  lineSensor.initThreeSensors(); //initalising the three sensors for the line movement
-  lineSensor.emittersOn(); //for line sensor
-  
+lineSensor.initThreeSensors(); //initalising the three sensors for the line movement
+lineSensor.emittersOn(); //for line sensor
 
-
-      Zumo32U4ProximitySensors proxSensors; //proximity sensor 
+Zumo32U4ProximitySensors proxSensors; //proximity sensor 
 Zumo32U4LineSensors lineSensor; //line sensor
 
 //Line sensor array(for all stored values)
@@ -154,7 +199,7 @@ unsigned int lineSensorsValues[3];
   //---------------------------------------------------------------------
   */
     /*
-    //--Line sensor reading----------------------------
+    //--prox sensor reading----------------------------
     Serial1.println("Left sensor: ");
     Serial1.println(left_sensor);
     Serial1.println("Right sensor: ");
