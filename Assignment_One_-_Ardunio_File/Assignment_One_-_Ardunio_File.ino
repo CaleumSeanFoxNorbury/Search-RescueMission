@@ -134,7 +134,7 @@ int32_t getAngle(){
 }
 
 void Course(int incomingByte){
-  while(Serial1.available == 0){  //trapes in course action 
+  while(Serial1.available() == 0){  //trapes in course action 
     //Start course | Go
     Go();
     //first corner of the course | COURSE
@@ -155,7 +155,7 @@ void Course(int incomingByte){
     }
   }
   //if zumo gets reading 
-  int order = Serial1.read():
+  int order = Serial1.read();
   motors.setSpeeds(0, 0);
   //TODO::what action does the zumo need to respond too? | search room | two types of rooms and directions zumo needs to take 
 }
