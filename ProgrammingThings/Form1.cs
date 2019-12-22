@@ -46,6 +46,8 @@ namespace ProgrammingThings
                 serialPort1.BaudRate = (9600);
                 serialPort1.ReadTimeout = (2000);
                 serialPort1.WriteTimeout = (2000);
+                incomingDataBox.Enabled = true;
+
             }
             catch ( Exception ex )
             {
@@ -135,12 +137,6 @@ namespace ProgrammingThings
         }
         //-----------------------------------------------------------------
 
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void bbtnTurn_Click(object sender, EventArgs e)
         {
             serialPort1.Open();
@@ -162,40 +158,32 @@ namespace ProgrammingThings
             serialPort1.Close();
         }
 
-        private void lblLeftSensor_Click(object sender, EventArgs e)
-        {
-            //https://www.youtube.com/watch?v=wej52Ca9HnY&t=440s link for recieving data 
-        }
-
-        private void richTextBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void IncomingDataBox_TextChanged(object sender, EventArgs e)
         {
             serialPort1.Open();
-            //IncomingDataBox.enabled = true;
-            //incomingDataBox.Enabled = true;
-            //int x = Convert.ToInt32(incomingData);
-            incomingDataBox.Text = "Ready";
-
-            Console.WriteLine("Ready");
-            string incomingData = serialPort1.ReadExisting();
-            incomingDataBox.Text =  incomingData;
+            incomingDataBox.ReadOnly = true;
             
+            this.KeyPreview = true;
+
+           
+            if (incomingDataBox.Enabled == true){
+                incomingDataBox.Text = "Worked";
+            }
+
+            Console.WriteLine("Loading in zumo readings");
+
+            // string incomingData = serialPort1.ReadExisting();
+
+            // incomingDataBox.Text =  incomingData;
+
+           // incomingDataBox.Text = "failed";
 
             serialPort1.Close();
         }
 
         private void groupBox1_Enter_1(object sender, EventArgs e)
         {
-
+            //GROUP BOX
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -203,6 +191,12 @@ namespace ProgrammingThings
             serialPort1.Open();
             serialPort1.WriteLine("t"); //go
             serialPort1.Close();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            incomingDataBox.Enabled = true;
+            // Application.DoEvents();
         }
     }
 }
