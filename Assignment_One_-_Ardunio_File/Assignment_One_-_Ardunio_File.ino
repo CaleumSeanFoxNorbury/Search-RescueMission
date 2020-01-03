@@ -36,13 +36,11 @@ void loop() {
   int incomingByte = 0; 
   lineSensors.read(lineSensorValues);
   incomingByte = Serial1.read();
-  
   //update, initialise or delcared functions/variables
   turnSensorUpdate();
   int32_t angle = getAngle();
-
   //TESTING | PLACE UNDER EVENT ACTION ONCE DONE 
-  Course(incomingByte);
+  Course();
     
   //event actions
   if (Serial1.available() > 0) {
@@ -72,7 +70,7 @@ void loop() {
       UTurn();
     }
    if(incomingByte == 99){ //key: c Will start course operation 
-     Course(incomingByte);
+     Course();
     }
   }
 }
@@ -133,8 +131,7 @@ int32_t getAngle(){
   return (((int32_t)turnAngle >> 16)* 360) >> 16; 
 }
 
-void Course(int incomingByte){
-  while(Serial1.available == 0){  //trapes in course action 
+void Course(){
     //Start course | Go
     Go();
     //first corner of the course | COURSE
@@ -142,7 +139,7 @@ void Course(int incomingByte){
         reachedImpass();
         turnChoice();
         delay(500);
-        motors.setSpeeds(100, 100);
+        Go();
      } 
      else if(lineSensorValues[0] > QTR_THRESHOLD){ //left sensor detects line | sensor 0
          motors.setSpeeds(100, 0);
@@ -153,10 +150,33 @@ void Course(int incomingByte){
            delay(250);
            motors.setSpeeds(100, 100);
     }
-  }
   //if zumo gets reading 
-  int order = Serial1.read():
-  motors.setSpeeds(0, 0);
+  if(Serial1.available() > 0){
+    int order = Serial1.read();
+    motors.setSpeeds(0, 0);
+    Serial1.println("Please select a function to process: ");
+    Serial1.println("L) Search room on the left");
+    Serial1.println("R) Search room on the right");
+    while(Serial1.available() == 0){
+      //wait until user reacts
+    }
+    if(Serial1.available() > 0){
+      int choice = Serial1.read();
+      if(choice == 108){
+       //searc room on the left
+       Serial1.println("Searching room on the left");
+       while(Serial1.available() == 0){
+        //wait until user reacts
+       }
+      }else if(choice == 114){
+        //serach room on the right
+        Serial1.print("Searching room on the right");
+        while(Serial1.available() == 0){
+        //wait until user reacts
+        }
+      } 
+    }
+  }
   //TODO::what action does the zumo need to respond too? | search room | two types of rooms and directions zumo needs to take 
 }
 
@@ -167,7 +187,7 @@ void reachedImpass(){
      delay(500);
      motors.setSpeeds(0, 0);
      delay(250);
-     Serial1.print("Corner");
+     Serial1.println("Corner");
 }
 
 void turnChoice(){
@@ -176,13 +196,15 @@ void turnChoice(){
       //wait until user reacts
     }
     if(Serial1.available() > 0){
-      int choice = Serial1.read();
-        if(choice == 108){ //if left turn
+     int choice = Serial1.read();
+     if(choice == 108){ //if left turn
        TurnLeft();
      }else if(choice == 114){ //if right turn 
         TurnRight();
      } 
-    }   
+    }
+
+    Serial1.println("completed");
 }
 
 /*
