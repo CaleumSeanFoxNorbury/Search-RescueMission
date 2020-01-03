@@ -41,13 +41,17 @@
             this.txtDegreesEntered = new System.Windows.Forms.TextBox();
             this.TurnDegrees = new System.Windows.Forms.Label();
             this.btnDegrees = new System.Windows.Forms.Button();
-            this.serialPort2 = new System.IO.Ports.SerialPort(this.components);
-            this.splitter2 = new System.Windows.Forms.Splitter();
-            this.lblgyroReadin = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.bbtnTurn = new System.Windows.Forms.Button();
             this.btnR = new System.Windows.Forms.Button();
             this.btnL = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.incomingDataBox = new System.Windows.Forms.RichTextBox();
+            this.ReadingsSector = new System.Windows.Forms.GroupBox();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
+            this.ReadingsSector.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOff
@@ -81,7 +85,7 @@
             // 
             // btnGo
             // 
-            this.btnGo.Location = new System.Drawing.Point(991, 277);
+            this.btnGo.Location = new System.Drawing.Point(991, 339);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(91, 33);
             this.btnGo.TabIndex = 3;
@@ -91,7 +95,7 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(991, 325);
+            this.btnStop.Location = new System.Drawing.Point(991, 387);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(91, 33);
             this.btnStop.TabIndex = 4;
@@ -101,7 +105,7 @@
             // 
             // btnBackwards
             // 
-            this.btnBackwards.Location = new System.Drawing.Point(991, 377);
+            this.btnBackwards.Location = new System.Drawing.Point(991, 439);
             this.btnBackwards.Name = "btnBackwards";
             this.btnBackwards.Size = new System.Drawing.Size(91, 33);
             this.btnBackwards.TabIndex = 5;
@@ -111,7 +115,7 @@
             // 
             // btnRight
             // 
-            this.btnRight.Location = new System.Drawing.Point(1105, 325);
+            this.btnRight.Location = new System.Drawing.Point(1105, 387);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(91, 33);
             this.btnRight.TabIndex = 6;
@@ -121,7 +125,7 @@
             // 
             // btnLeft
             // 
-            this.btnLeft.Location = new System.Drawing.Point(870, 325);
+            this.btnLeft.Location = new System.Drawing.Point(870, 387);
             this.btnLeft.Name = "btnLeft";
             this.btnLeft.Size = new System.Drawing.Size(91, 33);
             this.btnLeft.TabIndex = 7;
@@ -157,35 +161,9 @@
             this.btnDegrees.UseVisualStyleBackColor = true;
             this.btnDegrees.Click += new System.EventHandler(this.btnDegrees_Click);
             // 
-            // splitter2
-            // 
-            this.splitter2.Location = new System.Drawing.Point(0, 0);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(193, 478);
-            this.splitter2.TabIndex = 12;
-            this.splitter2.TabStop = false;
-            // 
-            // lblgyroReadin
-            // 
-            this.lblgyroReadin.AutoSize = true;
-            this.lblgyroReadin.Location = new System.Drawing.Point(199, 12);
-            this.lblgyroReadin.Name = "lblgyroReadin";
-            this.lblgyroReadin.Size = new System.Drawing.Size(96, 17);
-            this.lblgyroReadin.TabIndex = 14;
-            this.lblgyroReadin.Text = "Gryo Readin: ";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(301, 12);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(97, 24);
-            this.richTextBox1.TabIndex = 16;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
-            // 
             // bbtnTurn
             // 
-            this.bbtnTurn.Location = new System.Drawing.Point(1088, 200);
+            this.bbtnTurn.Location = new System.Drawing.Point(1088, 276);
             this.bbtnTurn.Name = "bbtnTurn";
             this.bbtnTurn.Size = new System.Drawing.Size(108, 43);
             this.bbtnTurn.TabIndex = 17;
@@ -195,7 +173,7 @@
             // 
             // btnR
             // 
-            this.btnR.Location = new System.Drawing.Point(974, 200);
+            this.btnR.Location = new System.Drawing.Point(974, 276);
             this.btnR.Name = "btnR";
             this.btnR.Size = new System.Drawing.Size(108, 43);
             this.btnR.TabIndex = 18;
@@ -205,7 +183,7 @@
             // 
             // btnL
             // 
-            this.btnL.Location = new System.Drawing.Point(853, 200);
+            this.btnL.Location = new System.Drawing.Point(853, 276);
             this.btnL.Name = "btnL";
             this.btnL.Size = new System.Drawing.Size(108, 43);
             this.btnL.TabIndex = 19;
@@ -213,16 +191,77 @@
             this.btnL.UseVisualStyleBackColor = true;
             this.btnL.Click += new System.EventHandler(this.btnL_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(844, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(116, 17);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "Object detected: ";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 21);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(151, 41);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "Test Controller";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Location = new System.Drawing.Point(12, 339);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(166, 133);
+            this.groupBox1.TabIndex = 33;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Test";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter_1);
+            // 
+            // incomingDataBox
+            // 
+            this.incomingDataBox.Location = new System.Drawing.Point(6, 30);
+            this.incomingDataBox.Name = "incomingDataBox";
+            this.incomingDataBox.Size = new System.Drawing.Size(244, 378);
+            this.incomingDataBox.TabIndex = 29;
+            this.incomingDataBox.Text = "";
+            this.incomingDataBox.TextChanged += new System.EventHandler(this.IncomingDataBox_TextChanged);
+            // 
+            // ReadingsSector
+            // 
+            this.ReadingsSector.Controls.Add(this.btnUpdate);
+            this.ReadingsSector.Controls.Add(this.incomingDataBox);
+            this.ReadingsSector.Location = new System.Drawing.Point(184, 12);
+            this.ReadingsSector.Name = "ReadingsSector";
+            this.ReadingsSector.Size = new System.Drawing.Size(256, 460);
+            this.ReadingsSector.TabIndex = 31;
+            this.ReadingsSector.TabStop = false;
+            this.ReadingsSector.Text = "ReadingsSector";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(6, 414);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(244, 40);
+            this.btnUpdate.TabIndex = 30;
+            this.btnUpdate.Text = "Update Readings";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1208, 478);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.ReadingsSector);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnL);
             this.Controls.Add(this.btnR);
             this.Controls.Add(this.bbtnTurn);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.lblgyroReadin);
             this.Controls.Add(this.btnDegrees);
             this.Controls.Add(this.TurnDegrees);
             this.Controls.Add(this.txtDegreesEntered);
@@ -234,10 +273,11 @@
             this.Controls.Add(this.btnOn);
             this.Controls.Add(this.labelDisplay);
             this.Controls.Add(this.btnOff);
-            this.Controls.Add(this.splitter2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Zumo Controller";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.ReadingsSector.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,13 +297,15 @@
         private System.Windows.Forms.TextBox txtDegreesEntered;
         private System.Windows.Forms.Label TurnDegrees;
         private System.Windows.Forms.Button btnDegrees;
-        private System.IO.Ports.SerialPort serialPort2;
-        private System.Windows.Forms.Splitter splitter2;
-        private System.Windows.Forms.Label lblgyroReadin;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button bbtnTurn;
         private System.Windows.Forms.Button btnR;
         private System.Windows.Forms.Button btnL;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RichTextBox incomingDataBox;
+        private System.Windows.Forms.GroupBox ReadingsSector;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }
 

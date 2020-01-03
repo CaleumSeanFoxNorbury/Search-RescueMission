@@ -2,7 +2,6 @@
 
 #include "TurnSensor.h"
 
-
 uint32_t turnAngle = 0;
 int16_t turnRate;
 int16_t gyroOffset;
@@ -33,7 +32,6 @@ void turnSensorSetup()
     // Wait for new data to be available, then read it.
     while(!gyro.readReg(L3G::STATUS_REG) & 0x08);
     gyro.read();
-
     // Add the Z axis reading to the total.
     total += gyro.g.z;
   }
@@ -41,8 +39,7 @@ void turnSensorSetup()
   Serial1.println("Done calibrating!");
 }
 
-// This should be called to set the starting point for measuring
-// a turn.  After calling this, turnAngle will be 0.
+//resets angle to 0
 void turnSensorReset()
 {
   gyroLastUpdate = micros();
@@ -65,8 +62,6 @@ void turnSensorUpdate()
 
   // (angular change = angular velocity * time)
   int32_t d = (int32_t)turnRate * dt;
-
-
   // (0.07 dps/digit) * (1/1000000 s/us) * (2^29/45 unit/degree)
   // = 14680064/17578125 unit/(digit*us)
   turnAngle += (int64_t)d * 14680064 / 17578125;
