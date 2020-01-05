@@ -18,7 +18,6 @@ void turnSensorSetup()
 
   // 2000 dps full scale
   gyro.writeReg(L3G::CTRL4, 0b00100000);
-
   // High-pass filter disabled
   gyro.writeReg(L3G::CTRL5, 0b00000000);
 

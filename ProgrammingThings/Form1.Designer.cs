@@ -58,6 +58,7 @@
             this.btn_right_corner = new System.Windows.Forms.Button();
             this.btn_left_corner = new System.Windows.Forms.Button();
             this.groupRCControls = new System.Windows.Forms.GroupBox();
+            this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.groupBox1.SuspendLayout();
             this.CourseReadings.SuspendLayout();
             this.groupRCControls.SuspendLayout();
@@ -361,6 +362,12 @@
             this.groupRCControls.TabStop = false;
             this.groupRCControls.Text = "RC Controls";
             // 
+            // directorySearcher1
+            // 
+            this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -414,6 +421,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.GroupBox groupRCControls;
+        private System.DirectoryServices.DirectorySearcher directorySearcher1;
     }
 }
 
