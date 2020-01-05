@@ -34,14 +34,10 @@ void setup() {
 void loop() {
   //reading 
   int incomingByte = 0; 
-  lineSensors.read(lineSensorValues);
   //update, initialise or delcared functions/variables
   turnSensorUpdate();
   int32_t angle = getAngle();
-
-  //TESTING | PLACE UNDER EVENT ACTION ONCE DONE 
-  //Course();
- 
+  
   //event actions
   if(Serial1.available() > 0) {
    incomingByte = Serial1.read();
@@ -70,6 +66,7 @@ void loop() {
       UTurn();
     }
    if(incomingByte == 99){ //key: c Will start course operation 
+     //user feedback | showing course has started
      Course();
     }
   }
@@ -131,58 +128,46 @@ int32_t getAngle(){
 }
 
 void Course(){
-    //user feedback | showing course has started
-    Serial1.println("Course Starting");
+    while(Serial1.read() == -1){
     Go();
-    if(Serial1.read() != 0){
-      int v = Serial1.read();
-      Serial1.println("has got value");
-      Serial1.println(v); 
-    }else{
-      Serial1.println("hasnt got value");
+      lineSensors.read(lineSensorValues); 
+      if((lineSensorValues[2] > QTR_THRESHOLD) && (lineSensorValues[0] > QTR_THRESHOLD)){ //if center sensor detects black line |sensor 1
+        reachedImpass();
+        turnChoice();
+        delay(500);
+        Go();
+      } 
+      else if(lineSensorValues[0] > QTR_THRESHOLD){ //left sensor detects line | sensor 0
+         motors.setSpeeds(100, 0);
+         delay(250);
+         motors.setSpeeds(100, 100);
+      }else if(lineSensorValues[2] > QTR_THRESHOLD){ //if right sensor detects black line| sensor 2
+           motors.setSpeeds(0,  100);
+           delay(250);
+           motors.setSpeeds(100, 100);
+      }       
     }
-    
-//    Go();
-//    //first corner of the course | COURSE
-//    if((lineSensorValues[2] > QTR_THRESHOLD) && (lineSensorValues[0] > QTR_THRESHOLD)){ //if center sensor detects black line |sensor 1
-//        reachedImpass();
-//        turnChoice();
-//        delay(500);
-//        Go();
-//     } 
-//     else if(lineSensorValues[0] > QTR_THRESHOLD){ //left sensor detects line | sensor 0
-//         motors.setSpeeds(100, 0);
-//         delay(250);
-//         motors.setSpeeds(100, 100);
-//     }else if(lineSensorValues[2] > QTR_THRESHOLD){ //if right sensor detects black line| sensor 2
-//           motors.setSpeeds(0,  100);
-//           delay(250);
-//           motors.setSpeeds(100, 100);
-//    }    
-//  //if zumo gets reading 
-//  if(Serial1.available() > 0){
-//    int order = Serial1.read();
-//    motors.setSpeeds(0, 0);
-//    Serial1.println("Please select a function to process: ");
-//    Serial1.println("L) Search room on the left");
-//    Serial1.println("R) Search room on the right");
-//    Serial1.println(" ");
-//    while(Serial1.available() == 0){
-//      //wait until user reacts
-//    }
-//    if(Serial1.available() > 0){
-//      int choice = Serial1.read();
-//      if(choice == 108){
-//       //searc room on the left
-//       Serial1.println("Searching room on the left");
-//       searchingLeftRoom();
-//     }else if(choice == 114){
-//        //serach room on the right
-//        Serial1.println("Searching room on the right");
-//        searchingRightRoom();
-//     } 
-//   }
-// }
+     int order = Serial1.read();
+     Stop();
+     Serial1.println("Please select a function to process: ");
+     Serial1.println("L) Search room on the left");
+     Serial1.println("R) Search room on the right");
+     Serial1.println(" ");
+     while(Serial1.available() == 0){
+       //wait until user reacts
+     }
+     if(Serial1.available() > 0){
+       int choice = Serial1.read();
+       if(choice == 108){
+       //searc room on the left
+       Serial1.println("Searching room on the left");
+       searchingLeftRoom();
+     }else if(choice == 114){
+       //serach room on the right
+        Serial1.println("Searching room on the right");
+        searchingRightRoom();
+     }     
+  }
 }
 
 void reachedImpass(){
