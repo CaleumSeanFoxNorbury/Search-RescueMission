@@ -64,9 +64,11 @@ void loop() {
    }
    if(incomingByte == 56){ //key: 8 Functionality: 180degree turn
       UTurn();
-    }
+   }
    if(incomingByte == 99){ //key: c Will start course operation 
      //user feedback | showing course has started
+     Serial1.println("Starting Course");
+     Serial1.println(" ");
      Course();
     }
   }
@@ -166,7 +168,7 @@ void Course(){
        //serach room on the right
         Serial1.println("Searching room on the right");
         searchingRightRoom();
-     }     
+     } 
   }
 }
 
@@ -181,7 +183,7 @@ void reachedImpass(){
 }
 
 void turnChoice(){
-    Serial1.println("Turn Left[l] or Right[r]?");
+    Serial1.println("Turn Left[l] | Right[r] | U-Turn[8]");
     while(Serial1.available() == 0){
       //wait until user reacts
     }
@@ -191,10 +193,12 @@ void turnChoice(){
        TurnLeft();
      }else if(choice == 114){ //if right turn 
         TurnRight();
-     } 
+     } else if(choice == 56){ 
+        //uturn 
+        UTurn();
     }
-
-    Serial1.println("completed");
+   }
+   Serial1.println("completed");
 }
 
 void searchingLeftRoom(){
