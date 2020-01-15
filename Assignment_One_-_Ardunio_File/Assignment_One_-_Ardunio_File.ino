@@ -195,7 +195,12 @@ void searchingLeftRoom(){
   Serial1.println(" ");
   Serial1.println("Please send 'c' for completed task and [c]carry on"); 
   while(Serial1.read() != 99){
-    //wait...
+      //wait and display readings...
+      PrxSensorRead();
+      ReadInProxSensors();
+      DisplayReading();
+      Serial1.println(" ");
+      delay(500);
   }
   delay(500);
   Backwards();
@@ -218,7 +223,12 @@ void searchingRightRoom(){
   Serial1.println(" ");
   Serial1.println("Please send 'c' for completed task and [c]carry on"); 
   while(Serial1.read() != 99){
-    //wait...
+      //wait and display readings...
+      PrxSensorRead();
+      ReadInProxSensors();
+      DisplayReading();
+      Serial1.println(" ");
+      delay(500);
   }
   Serial1.println("Action completed!");
   delay(500);
@@ -251,7 +261,15 @@ void searchRoomDesicion(){
 }
 
 void headHome(){
-  //get to the T-junction 
-
+  //get to the T-junction
+  Go();
+  Serial1.println("please select a corner turn at the T-junction(Left[l], Right[r]): "
+  while(Serial1.read() != 108){
+    if(Serial1.read() == 114){
+      
+    }
+    //wait...
+  }
+  
   //get to the start
 }
