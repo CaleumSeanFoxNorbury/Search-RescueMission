@@ -45,20 +45,20 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.CourseReadings = new System.Windows.Forms.GroupBox();
+            this.btn_c = new System.Windows.Forms.Button();
+            this.btn_U_Turn = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.btn_stop = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.btn_stop = new System.Windows.Forms.Button();
+            this.btn_search_right = new System.Windows.Forms.Button();
+            this.btn_search_left = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_update_course_readings = new System.Windows.Forms.Button();
-            this.btn_search_right = new System.Windows.Forms.Button();
-            this.btn_search_left = new System.Windows.Forms.Button();
             this.btn_right_corner = new System.Windows.Forms.Button();
             this.btn_left_corner = new System.Windows.Forms.Button();
             this.groupRCControls = new System.Windows.Forms.GroupBox();
-            this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.groupBox1.SuspendLayout();
             this.CourseReadings.SuspendLayout();
             this.groupRCControls.SuspendLayout();
@@ -206,30 +206,51 @@
             // 
             // CourseReadings
             // 
+            this.CourseReadings.Controls.Add(this.btn_c);
+            this.CourseReadings.Controls.Add(this.btn_U_Turn);
             this.CourseReadings.Controls.Add(this.checkBox1);
             this.CourseReadings.Controls.Add(this.button2);
-            this.CourseReadings.Controls.Add(this.btn_stop);
-            this.CourseReadings.Controls.Add(this.label5);
             this.CourseReadings.Controls.Add(this.label4);
+            this.CourseReadings.Controls.Add(this.btn_stop);
+            this.CourseReadings.Controls.Add(this.btn_search_right);
+            this.CourseReadings.Controls.Add(this.btn_search_left);
             this.CourseReadings.Controls.Add(this.label3);
             this.CourseReadings.Controls.Add(this.label1);
             this.CourseReadings.Controls.Add(this.btn_update_course_readings);
-            this.CourseReadings.Controls.Add(this.btn_search_right);
-            this.CourseReadings.Controls.Add(this.btn_search_left);
             this.CourseReadings.Controls.Add(this.btn_right_corner);
             this.CourseReadings.Controls.Add(this.btn_left_corner);
             this.CourseReadings.Controls.Add(this.richTextBox1);
             this.CourseReadings.Location = new System.Drawing.Point(175, 12);
             this.CourseReadings.Name = "CourseReadings";
-            this.CourseReadings.Size = new System.Drawing.Size(732, 228);
+            this.CourseReadings.Size = new System.Drawing.Size(906, 228);
             this.CourseReadings.TabIndex = 35;
             this.CourseReadings.TabStop = false;
             this.CourseReadings.Text = "Course Readings";
             // 
+            // btn_c
+            // 
+            this.btn_c.Location = new System.Drawing.Point(430, 165);
+            this.btn_c.Name = "btn_c";
+            this.btn_c.Size = new System.Drawing.Size(152, 51);
+            this.btn_c.TabIndex = 37;
+            this.btn_c.Text = "Action Completed";
+            this.btn_c.UseVisualStyleBackColor = true;
+            this.btn_c.Click += new System.EventHandler(this.btn_c_Click);
+            // 
+            // btn_U_Turn
+            // 
+            this.btn_U_Turn.Location = new System.Drawing.Point(432, 125);
+            this.btn_U_Turn.Name = "btn_U_Turn";
+            this.btn_U_Turn.Size = new System.Drawing.Size(150, 34);
+            this.btn_U_Turn.TabIndex = 46;
+            this.btn_U_Turn.Text = "U-Turn";
+            this.btn_U_Turn.UseVisualStyleBackColor = true;
+            this.btn_U_Turn.Click += new System.EventHandler(this.btn_U_Turn_Click);
+            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(577, 30);
+            this.checkBox1.Location = new System.Drawing.Point(298, 0);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(123, 21);
             this.checkBox1.TabIndex = 45;
@@ -239,47 +260,58 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(427, 181);
+            this.button2.Location = new System.Drawing.Point(432, 30);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(148, 35);
+            this.button2.Size = new System.Drawing.Size(148, 48);
             this.button2.TabIndex = 44;
             this.button2.Text = "Start Course";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
-            // btn_stop
-            // 
-            this.btn_stop.Location = new System.Drawing.Point(577, 181);
-            this.btn_stop.Name = "btn_stop";
-            this.btn_stop.Size = new System.Drawing.Size(144, 35);
-            this.btn_stop.TabIndex = 43;
-            this.btn_stop.Text = "Stop";
-            this.btn_stop.UseVisualStyleBackColor = true;
-            this.btn_stop.Click += new System.EventHandler(this.btn_stop_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(427, 161);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 17);
-            this.label5.TabIndex = 43;
-            this.label5.Text = "General Actions:";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(427, 98);
+            this.label4.Location = new System.Drawing.Point(739, 84);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 17);
             this.label4.TabIndex = 42;
             this.label4.Text = "Search rooms:";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
+            // btn_stop
+            // 
+            this.btn_stop.Location = new System.Drawing.Point(432, 84);
+            this.btn_stop.Name = "btn_stop";
+            this.btn_stop.Size = new System.Drawing.Size(150, 35);
+            this.btn_stop.TabIndex = 43;
+            this.btn_stop.Text = "Stop";
+            this.btn_stop.UseVisualStyleBackColor = true;
+            this.btn_stop.Click += new System.EventHandler(this.btn_stop_Click);
+            // 
+            // btn_search_right
+            // 
+            this.btn_search_right.Location = new System.Drawing.Point(742, 165);
+            this.btn_search_right.Name = "btn_search_right";
+            this.btn_search_right.Size = new System.Drawing.Size(144, 51);
+            this.btn_search_right.TabIndex = 38;
+            this.btn_search_right.Text = "Search Right Room";
+            this.btn_search_right.UseVisualStyleBackColor = true;
+            this.btn_search_right.Click += new System.EventHandler(this.btn_search_right_Click);
+            // 
+            // btn_search_left
+            // 
+            this.btn_search_left.Location = new System.Drawing.Point(742, 108);
+            this.btn_search_left.Name = "btn_search_left";
+            this.btn_search_left.Size = new System.Drawing.Size(144, 51);
+            this.btn_search_left.TabIndex = 37;
+            this.btn_search_left.Text = "Search Left Room";
+            this.btn_search_left.UseVisualStyleBackColor = true;
+            this.btn_search_left.Click += new System.EventHandler(this.btn_search_left_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(424, 39);
+            this.label3.Location = new System.Drawing.Point(588, 84);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 17);
             this.label3.TabIndex = 41;
@@ -288,7 +320,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(424, 22);
+            this.label1.Location = new System.Drawing.Point(427, 1);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 17);
             this.label1.TabIndex = 40;
@@ -305,31 +337,11 @@
             this.btn_update_course_readings.UseVisualStyleBackColor = true;
             this.btn_update_course_readings.Click += new System.EventHandler(this.btn_update_course_readings_Click);
             // 
-            // btn_search_right
-            // 
-            this.btn_search_right.Location = new System.Drawing.Point(577, 123);
-            this.btn_search_right.Name = "btn_search_right";
-            this.btn_search_right.Size = new System.Drawing.Size(144, 35);
-            this.btn_search_right.TabIndex = 38;
-            this.btn_search_right.Text = "Search Right Room";
-            this.btn_search_right.UseVisualStyleBackColor = true;
-            this.btn_search_right.Click += new System.EventHandler(this.btn_search_right_Click);
-            // 
-            // btn_search_left
-            // 
-            this.btn_search_left.Location = new System.Drawing.Point(427, 123);
-            this.btn_search_left.Name = "btn_search_left";
-            this.btn_search_left.Size = new System.Drawing.Size(144, 35);
-            this.btn_search_left.TabIndex = 37;
-            this.btn_search_left.Text = "Search Left Room";
-            this.btn_search_left.UseVisualStyleBackColor = true;
-            this.btn_search_left.Click += new System.EventHandler(this.btn_search_left_Click);
-            // 
             // btn_right_corner
             // 
-            this.btn_right_corner.Location = new System.Drawing.Point(577, 60);
+            this.btn_right_corner.Location = new System.Drawing.Point(589, 165);
             this.btn_right_corner.Name = "btn_right_corner";
-            this.btn_right_corner.Size = new System.Drawing.Size(144, 35);
+            this.btn_right_corner.Size = new System.Drawing.Size(144, 51);
             this.btn_right_corner.TabIndex = 36;
             this.btn_right_corner.Text = "Right Corner";
             this.btn_right_corner.UseVisualStyleBackColor = true;
@@ -337,9 +349,9 @@
             // 
             // btn_left_corner
             // 
-            this.btn_left_corner.Location = new System.Drawing.Point(427, 60);
+            this.btn_left_corner.Location = new System.Drawing.Point(588, 108);
             this.btn_left_corner.Name = "btn_left_corner";
-            this.btn_left_corner.Size = new System.Drawing.Size(144, 35);
+            this.btn_left_corner.Size = new System.Drawing.Size(144, 51);
             this.btn_left_corner.TabIndex = 35;
             this.btn_left_corner.Text = "Left Coner";
             this.btn_left_corner.UseVisualStyleBackColor = true;
@@ -361,12 +373,6 @@
             this.groupRCControls.TabIndex = 36;
             this.groupRCControls.TabStop = false;
             this.groupRCControls.Text = "RC Controls";
-            // 
-            // directorySearcher1
-            // 
-            this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
-            this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
-            this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
             // 
             // Form1
             // 
@@ -417,11 +423,11 @@
         private System.Windows.Forms.Button btn_right_corner;
         private System.Windows.Forms.Button btn_left_corner;
         private System.Windows.Forms.Button btn_stop;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.GroupBox groupRCControls;
-        private System.DirectoryServices.DirectorySearcher directorySearcher1;
+        private System.Windows.Forms.Button btn_U_Turn;
+        private System.Windows.Forms.Button btn_c;
     }
 }
 
