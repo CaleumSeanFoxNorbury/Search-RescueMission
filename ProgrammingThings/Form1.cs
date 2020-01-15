@@ -46,15 +46,17 @@ namespace ProgrammingThings
                 serialPort1.BaudRate = (9600);
                 serialPort1.ReadTimeout = (2000);
                 serialPort1.WriteTimeout = (2000);
-                checkBox1.Enabled = true;
-                checkBox1.Checked = true;
                 serialPort1.DtrEnable = true;
                 serialPort1.RtsEnable = true;
-                //serialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);              
+            
+                checkBox1.Enabled = true;
+                checkBox1.Checked = true;
+
                 new Thread(() =>
                 {
                     Thread.CurrentThread.IsBackground = true;
                     UpdateReadings();
+                
                 }).Start();
             }
             catch (Exception ex)
@@ -146,7 +148,7 @@ namespace ProgrammingThings
 
         private void button1_Click(object sender, EventArgs e)
         {
-            serialPort1.WriteLine("t"); //testing 
+            serialPort1.WriteLine("h"); //testing 
             Console.WriteLine("t sent");
         }
 
