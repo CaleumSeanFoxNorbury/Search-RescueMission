@@ -263,6 +263,7 @@ void searchRoomDesicion(){
 void headHome(){
   //get to the T-junction
   Go();
+  delay(1500);
   Serial1.println("please select a corner turn at the T-junction(Left[l], Right[r]): "
   while(Serial1.read() != 108){
     if(Serial1.read() == 114){
