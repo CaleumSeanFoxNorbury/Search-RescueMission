@@ -94,7 +94,6 @@ namespace ProgrammingThings
         private void btnBackwards_Click(object sender, EventArgs e)
         {
             //backwards
-            serialPort1.Open();
             serialPort1.WriteLine("b");         
         }
 
@@ -257,6 +256,16 @@ namespace ProgrammingThings
             {
                 return incomingString;
             }
+        }
+
+        private void btn_U_Turn_Click(object sender, EventArgs e)
+        {
+            serialPort1.WriteLine("8");
+        }
+
+        private void btn_c_Click(object sender, EventArgs e)
+        {
+            serialPort1.WriteLine("c");
         }
     }
 }

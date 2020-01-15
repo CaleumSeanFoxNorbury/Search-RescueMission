@@ -86,7 +86,7 @@ void Backwards(){
 }
 void TurnLeft(){
   turnSensorReset();
-  int angle =0; 
+  int angle = 0; 
   do{
     motors.setSpeeds(-100, 100);
     turnSensorUpdate();
@@ -130,7 +130,9 @@ int32_t getAngle(){
 }
 
 void Course(){
-    while(Serial1.read() == -1){
+  //while serial port doesnt read 's'|115 - 'l'|108 - 'r'|114 - '8'|56
+  //while(Serial1.read() != 115 || Serial1.read() != 108 || Serial1.read() != 114 || Serial1.read() != 56){
+  while(Serial1.read() != 115){    
     Go();
       lineSensors.read(lineSensorValues); 
       if((lineSensorValues[2] > QTR_THRESHOLD) && (lineSensorValues[0] > QTR_THRESHOLD)){ //if center sensor detects black line |sensor 1
@@ -149,31 +151,11 @@ void Course(){
            motors.setSpeeds(100, 100);
       }       
     }
-     int order = Serial1.read();
-     Stop();
-     Serial1.println("Please select a function to process: ");
-     Serial1.println("L) Search room on the left");
-     Serial1.println("R) Search room on the right");
-     Serial1.println(" ");
-     while(Serial1.available() == 0){
-       //wait until user reacts
-     }
-     if(Serial1.available() > 0){
-       int choice = Serial1.read();
-       if(choice == 108){
-       //searc room on the left
-       Serial1.println("Searching room on the left");
-       searchingLeftRoom();
-     }else if(choice == 114){
-       //serach room on the right
-        Serial1.println("Searching room on the right");
-        searchingRightRoom();
-     } 
-  }
+    searchRoomDesicion();  
 }
 
 void reachedImpass(){
-      motors.setSpeeds(0, 0);
+      motors.setSpeeds(0, 0); 
      delay(250);
      motors.setSpeeds(-100, -100);
      delay(500);
@@ -214,19 +196,17 @@ void searchingLeftRoom(){
   while(Serial1.available() == 0){
     //wait...
   }
-  if(Serial1.available() > 0){
-    int incomingSignal = Serial1.read();
-    if(incomingSignal == 99){
-        delay(1000);
-        Backwards();
-        delay(1000);
-        Stop();
-    }else{
+  int incomingSignal = Serial1.read();
+  if(incomingSignal == 99){
+    delay(1000);
+    Backwards();
+    delay(1000);
+    Stop();
+   }else{
       while(Serial1.available() != 99){
         //wait...
       }
-    }
-  }
+   }
 }
 
 void searchingRightRoom(){
@@ -242,23 +222,71 @@ void searchingRightRoom(){
   while(Serial1.available() == 0){
     //wait...
   }
-  if(Serial1.available() > 0){
-    int incomingSignal = Serial1.read();
-    if(incomingSignal == 99){
-        delay(1000);
-        Backwards();
-        delay(1000);
-        Stop();
-    }else{
+  int incomingSignal = Serial1.read();
+  if(incomingSignal == 99){
+    delay(1000);
+    Backwards();
+    delay(1000);
+    Stop();
+   }else{
       while(Serial1.available() != 99){
         //wait...
-      }
-    }
-  }
+      } 
+   }
 }
 
 void printMessage(){
   Serial1.println("Update");
+}
+
+void searchRoomDesicion(){
+  Stop();
+  int choice = 0;
+     Serial1.println("Please select a function to process: ");
+     Serial1.println("L) Search room on the left");
+     Serial1.println("R) Search room on the right");
+     Serial1.println(" ");
+     while(Serial1.read() == -1){
+      if(Serial1.read() != -1){
+        choice = Serial1.read();
+      }
+     }
+     int r = Serial1.read();
+     if(Serial1.read() == 108){
+      while(Serial1.available() == 108){
+        Serial1.println("Got left");
+      }
+     }else if(Serial1.read() == 114){
+      while(Serial1.available() != 114){
+       Serial1.println("Got right");
+      }
+     }else if(Serial1.read() == -1){
+        Serial1.println("got the -1");
+          while(Serial1.available() == 7534){
+           Serial1.println("got the -1");
+        }
+     }
+//     while(Serial1.available() == 108){
+//      Serial1.println("Got left");
+//     }
+//     while(Serial1.available() != 114){
+//      Serial1.println("Got right");
+//     }
+     Serial1.println("skipped the loops");
+//     int choice = Serial1.read();
+//     Serial1.println("Got Out");
+//     Serial1.println(choice);
+//     if(choice == 108){
+//      //searc room on the left
+//      Serial1.println("Searching room on the left");
+//      searchingLeftRoom();
+//     }else if(choice == 114){
+//       //serach room on the right
+//       Serial1.println("Searching room on the right");
+//       searchingRightRoom();
+//     }else if(choice == -1){
+//      
+//     }
 }
 /*
   
