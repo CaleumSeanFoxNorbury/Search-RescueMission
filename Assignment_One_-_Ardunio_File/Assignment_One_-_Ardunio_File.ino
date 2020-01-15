@@ -115,7 +115,7 @@ void UTurn(){
 }
 //------------------------------------------------------
 
-//displaying incoming bytes worth
+//displaying incoming bytes worth | TESTING
 void displayIncomingByteWorth(int Incomingbyte){
     Serial1.println("I received: ");
     Serial1.println(Incomingbyte, DEC);
@@ -162,7 +162,7 @@ void reachedImpass(){
 }
 
 void turnChoice(){
-    Serial1.println("Turn Left[l] | Right[r] | U-Turn[8]");
+    Serial1.println("Turn Left[l] | Right[r] | U-Turn[8] | Return Home[h]");
     while(Serial1.available() == 0){
       //wait until user reacts
     }
@@ -175,7 +175,11 @@ void turnChoice(){
      } else if(choice == 56){ 
         //uturn 
         UTurn();
-    }// else if(choice == ??)
+    } else if(choice == 104){
+      //head home...
+      Serial1.print("Returning home");
+      delay(500);
+    }
    }
    Serial1.println("completed");
 }
@@ -215,9 +219,6 @@ void searchingRightRoom(){
   Serial1.println("Please send 'c' for completed task and [c]carry on"); 
   while(Serial1.read() != 99){
     //wait...
-    int b = Serial1.read();
-    Serial1.println("In the loop waiting on a c");
-    Serial1.println(b);
   }
   Serial1.println("Action completed!");
   delay(500);
