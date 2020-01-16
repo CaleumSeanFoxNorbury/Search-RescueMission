@@ -261,16 +261,35 @@ void searchRoomDesicion(){
 }
 
 void headHome(){
-  //get to the T-junction
-  Go();
-  delay(1500);
-  Serial1.println("please select a corner turn at the T-junction(Left[l], Right[r]): "
-  while(Serial1.read() != 108){
+  while(Serial1.read() != 115){    
+    Go();
+      lineSensors.read(lineSensorValues); 
+      if((lineSensorValues[2] > QTR_THRESHOLD) && (lineSensorValues[0] > QTR_THRESHOLD)){ //if center sensor detects black line |sensor 1
+        reachedImpass();
+        turnChoice();
+        delay(500);
+        Go();
+      } 
+      else if(lineSensorValues[0] > QTR_THRESHOLD){ //left sensor detects line | sensor 0
+         motors.setSpeeds(100, 0);
+         delay(250);
+         motors.setSpeeds(100, 100);
+      }else if(lineSensorValues[2] > QTR_THRESHOLD){ //if right sensor detects black line| sensor 2
+           motors.setSpeeds(0,  100);
+           delay(250);
+           motors.setSpeeds(100, 100);
+      }       
+    }
+    //got to the T-junction
+    while(Serial1.read() != 108){
     if(Serial1.read() == 114){
-      
+      //take a right turn
+      TurnRight();
+      headHome();
     }
     //wait...
   }
-  
-  //get to the start
+  //turn left
+  TurnLeft();
+  headHome();
 }
