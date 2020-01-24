@@ -1,5 +1,4 @@
 #include <Wire.h>
-
 #include "TurnSensor.h"
 
 uint32_t turnAngle = 0;

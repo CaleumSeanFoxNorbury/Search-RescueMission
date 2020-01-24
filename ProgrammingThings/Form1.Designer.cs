@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.GroupBox groupBox2;
             this.btnOff = new System.Windows.Forms.Button();
             this.labelDisplay = new System.Windows.Forms.ComboBox();
             this.btnOn = new System.Windows.Forms.Button();
@@ -44,7 +45,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.CourseReadings = new System.Windows.Forms.GroupBox();
+            this.Course = new System.Windows.Forms.GroupBox();
             this.btn_c = new System.Windows.Forms.Button();
             this.btn_U_Turn = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -59,9 +60,13 @@
             this.btn_right_corner = new System.Windows.Forms.Button();
             this.btn_left_corner = new System.Windows.Forms.Button();
             this.groupRCControls = new System.Windows.Forms.GroupBox();
+            this.btn_ReturnHome = new System.Windows.Forms.Button();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
-            this.CourseReadings.SuspendLayout();
+            this.Course.SuspendLayout();
             this.groupRCControls.SuspendLayout();
+            groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOff
@@ -189,7 +194,7 @@
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Location = new System.Drawing.Point(12, 339);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(166, 133);
+            this.groupBox1.Size = new System.Drawing.Size(166, 138);
             this.groupBox1.TabIndex = 33;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Test";
@@ -204,28 +209,30 @@
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.RichTextBox1_TextChanged);
             // 
-            // CourseReadings
+            // Course
             // 
-            this.CourseReadings.Controls.Add(this.btn_c);
-            this.CourseReadings.Controls.Add(this.btn_U_Turn);
-            this.CourseReadings.Controls.Add(this.checkBox1);
-            this.CourseReadings.Controls.Add(this.button2);
-            this.CourseReadings.Controls.Add(this.label4);
-            this.CourseReadings.Controls.Add(this.btn_stop);
-            this.CourseReadings.Controls.Add(this.btn_search_right);
-            this.CourseReadings.Controls.Add(this.btn_search_left);
-            this.CourseReadings.Controls.Add(this.label3);
-            this.CourseReadings.Controls.Add(this.label1);
-            this.CourseReadings.Controls.Add(this.btn_update_course_readings);
-            this.CourseReadings.Controls.Add(this.btn_right_corner);
-            this.CourseReadings.Controls.Add(this.btn_left_corner);
-            this.CourseReadings.Controls.Add(this.richTextBox1);
-            this.CourseReadings.Location = new System.Drawing.Point(175, 12);
-            this.CourseReadings.Name = "CourseReadings";
-            this.CourseReadings.Size = new System.Drawing.Size(906, 228);
-            this.CourseReadings.TabIndex = 35;
-            this.CourseReadings.TabStop = false;
-            this.CourseReadings.Text = "Course Readings";
+            this.Course.Controls.Add(this.btn_ReturnHome);
+            this.Course.Controls.Add(this.btn_c);
+            this.Course.Controls.Add(this.btn_U_Turn);
+            this.Course.Controls.Add(this.checkBox1);
+            this.Course.Controls.Add(this.button2);
+            this.Course.Controls.Add(this.label4);
+            this.Course.Controls.Add(this.btn_stop);
+            this.Course.Controls.Add(this.btn_search_right);
+            this.Course.Controls.Add(this.btn_search_left);
+            this.Course.Controls.Add(this.label3);
+            this.Course.Controls.Add(this.label1);
+            this.Course.Controls.Add(this.btn_update_course_readings);
+            this.Course.Controls.Add(this.btn_right_corner);
+            this.Course.Controls.Add(this.btn_left_corner);
+            this.Course.Controls.Add(this.richTextBox1);
+            this.Course.Location = new System.Drawing.Point(175, 12);
+            this.Course.Name = "Course";
+            this.Course.Size = new System.Drawing.Size(906, 228);
+            this.Course.TabIndex = 35;
+            this.Course.TabStop = false;
+            this.Course.Text = "Course Readings";
+            this.Course.Enter += new System.EventHandler(this.CourseReadings_Enter);
             // 
             // btn_c
             // 
@@ -367,20 +374,50 @@
             this.groupRCControls.Controls.Add(this.btnRight);
             this.groupRCControls.Controls.Add(this.btnGo);
             this.groupRCControls.Controls.Add(this.btnBackwards);
-            this.groupRCControls.Location = new System.Drawing.Point(181, 246);
+            this.groupRCControls.Location = new System.Drawing.Point(703, 246);
             this.groupRCControls.Name = "groupRCControls";
             this.groupRCControls.Size = new System.Drawing.Size(378, 231);
             this.groupRCControls.TabIndex = 36;
             this.groupRCControls.TabStop = false;
             this.groupRCControls.Text = "RC Controls";
             // 
+            // btn_ReturnHome
+            // 
+            this.btn_ReturnHome.Location = new System.Drawing.Point(589, 32);
+            this.btn_ReturnHome.Name = "btn_ReturnHome";
+            this.btn_ReturnHome.Size = new System.Drawing.Size(296, 45);
+            this.btn_ReturnHome.TabIndex = 47;
+            this.btn_ReturnHome.Text = "Return home";
+            this.btn_ReturnHome.UseVisualStyleBackColor = true;
+            this.btn_ReturnHome.Click += new System.EventHandler(this.btn_ReturnHome_Click);
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Location = new System.Drawing.Point(6, 21);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(516, 199);
+            this.richTextBox2.TabIndex = 37;
+            this.richTextBox2.Text = "";
+            this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(this.richTextBox2);
+            groupBox2.Location = new System.Drawing.Point(175, 246);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new System.Drawing.Size(528, 231);
+            groupBox2.TabIndex = 38;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Course Proximity Readings";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1204, 478);
+            this.ClientSize = new System.Drawing.Size(1096, 488);
+            this.Controls.Add(groupBox2);
             this.Controls.Add(this.groupRCControls);
-            this.Controls.Add(this.CourseReadings);
+            this.Controls.Add(this.Course);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnOn);
             this.Controls.Add(this.labelDisplay);
@@ -389,9 +426,10 @@
             this.Text = "Zumo Controller";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
-            this.CourseReadings.ResumeLayout(false);
-            this.CourseReadings.PerformLayout();
+            this.Course.ResumeLayout(false);
+            this.Course.PerformLayout();
             this.groupRCControls.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -413,7 +451,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.GroupBox CourseReadings;
+        private System.Windows.Forms.GroupBox Course;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
@@ -428,6 +466,8 @@
         private System.Windows.Forms.GroupBox groupRCControls;
         private System.Windows.Forms.Button btn_U_Turn;
         private System.Windows.Forms.Button btn_c;
+        private System.Windows.Forms.Button btn_ReturnHome;
+        private System.Windows.Forms.RichTextBox richTextBox2;
     }
 }
 
