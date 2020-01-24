@@ -41,6 +41,7 @@ namespace ProgrammingThings
         {
             try
             {
+                //setting up, enables, and setters
                 labelDisplay.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
                 labelDisplay.SelectedIndex = 0;
                 serialPort1.BaudRate = (9600);
@@ -52,12 +53,14 @@ namespace ProgrammingThings
                 checkBox1.Enabled = true;
                 checkBox1.Checked = true;
 
+                //Thread for constent looping(Used for constently getting serial port data)
                 new Thread(() =>
                 {
-                    Thread.CurrentThread.IsBackground = true;
+                    //setting the thread in the background
+                    Thread.CurrentThread.IsBackground = true;                    
                     UpdateReadings();
                 
-                }).Start();
+                }).Start();//start
             }
             catch (Exception ex)
             {
@@ -71,6 +74,7 @@ namespace ProgrammingThings
             {
                 //truning off serial port connection.
                 serialPort1.Close();
+                //user feedback
                 Console.WriteLine("Port Off");                
             }
             catch (Exception ex)
@@ -92,7 +96,6 @@ namespace ProgrammingThings
             }
         }
 
-        //--RC CONTROLS----------------------------------------------------
         private void btnBackwards_Click(object sender, EventArgs e)
         {
             //backwards
@@ -148,15 +151,15 @@ namespace ProgrammingThings
 
         private void button1_Click(object sender, EventArgs e)
         {
-            serialPort1.WriteLine("h"); //testing 
+            //Testing button |  functionality changes depending on certain tests.
+            serialPort1.WriteLine("h"); 
             Console.WriteLine("t sent");
         }
 
         private void RichTextBox1_TextChanged(object sender, EventArgs e)
         {
             Console.WriteLine("Loading in zumo readings");
-                  
-            //UpdateCourseReadings();
+            //this text box updates somewhere else.     
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -171,26 +174,31 @@ namespace ProgrammingThings
 
         private void btn_left_corner_Click(object sender, EventArgs e)
         {
+            //send l to zumo
             serialPort1.WriteLine("l");
         }
 
         private void btn_right_corner_Click(object sender, EventArgs e)
         {
+            //send r to zumo
             serialPort1.WriteLine("r");
         }
 
         private void btn_search_left_Click(object sender, EventArgs e)
         {
+            //send l to zumo again.
             serialPort1.WriteLine("l");
         }
 
         private void btn_search_right_Click(object sender, EventArgs e)
         {
+            //send r to zumo again.
             serialPort1.WriteLine("r");
         }
 
         private void btn_stop_Click(object sender, EventArgs e)
         {
+            //send a to zumo.
             serialPort1.WriteLine("s");
         }
 
@@ -199,7 +207,7 @@ namespace ProgrammingThings
             //update course readings manually 
             if(checkBox1.Checked == false)
             {
-
+                //Do nothing, updates somewhere else...
             }
             else
             {
@@ -218,6 +226,9 @@ namespace ProgrammingThings
             //check box for constent loop | always update course readings sector.
             serialPort1.Open();
             incomingString = serialPort1.ReadExisting();
+
+            //NOTE: This code is not used but could come useful when dealing with checked box change value.
+            //IS REQUIRED!
             if (incomingString == "" || incomingString == null)
             {
                 richTextBox1.Text = "No Data Recieved!";
@@ -232,42 +243,68 @@ namespace ProgrammingThings
         private async void UpdateReadings()
         {
             serialPort1.Open();
+            //while check box update is true then...
             while (checkBox1.Checked == true)
             {
+                //get serial port reading
                 string reading = checkForIncomingString();
                 if (reading == "" || reading == null)
                 {
+                    //if not readings from serial port
                     richTextBox1.Invoke(new Action(() => { richTextBox1.Text = "Waiting for reading..."; }));
-                }
+
+                }          
                 else
                 {
+                    //if serial port has readings then display within rich text box
                     richTextBox1.Invoke(new Action(() => { richTextBox1.Text = reading; }));
                     Thread.Sleep(3000); //same as arduino file
-                }              
+                }
             }
         }
 
         private string checkForIncomingString()
         {
+            //checks for incoming string...
             incomingString = serialPort1.ReadExisting();
             if (incomingString == "" || incomingString == null)
             {
+                //if serial port is null then send null or "".
                 return "";
-            }
+            }     
             else
             {
+                //is serial port has a reading then send the reading back to be displayed.
                 return incomingString;
             }
         }
 
         private void btn_U_Turn_Click(object sender, EventArgs e)
         {
+            //send 8 | U-Turn
             serialPort1.WriteLine("8");
         }
 
         private void btn_c_Click(object sender, EventArgs e)
         {
+            //send c | completed course action | start course.
             serialPort1.WriteLine("c");
+        }
+
+        private void btn_ReturnHome_Click(object sender, EventArgs e)
+        {
+            //send h | return home functions.
+            serialPort1.WriteLine("h");
+        }
+
+        private void CourseReadings_Enter(object sender, EventArgs e)
+        {
+            //Group box | no code needed.
+        }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
+        {
+            serialPort1.WriteLine("q");
         }
     }
 }
